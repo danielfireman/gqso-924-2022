@@ -11,8 +11,18 @@ public class UnitTest {
   public void welcome() {
     MockRouter router = new MockRouter(new App());
     router.get("/", rsp -> {
-      assertEquals("Welcome to Jooby!", rsp.value());
+      assertEquals("Chupa Javascript!", rsp.value());
       assertEquals(StatusCode.OK, rsp.getStatusCode());
     });
   }
+
+  @Test
+  public void raiz() {
+    MockRouter router = new MockRouter(new App());
+    router.get("/raiz/16", rsp -> {
+      assertEquals(4.0, rsp.value());
+      assertEquals(StatusCode.OK, rsp.getStatusCode());
+    });
+  }
+
 }
