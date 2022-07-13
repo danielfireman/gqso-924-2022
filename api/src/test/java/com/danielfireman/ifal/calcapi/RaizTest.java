@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnitTest {
+public class RaizTest {
   @Test
-  public void welcome() {
+  public void raiz() {
     MockRouter router = new MockRouter(new App());
-    router.get("/", rsp -> {
-      assertEquals("Chupa Javascript!", rsp.value());
+    router.get("/raiz/16", rsp -> {
+      assertEquals(4.0, rsp.value());
       assertEquals(StatusCode.OK, rsp.getStatusCode());
     });
   }
