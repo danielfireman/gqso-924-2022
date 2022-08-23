@@ -17,14 +17,25 @@ public class IntegrationTest {
   static OkHttpClient client = new OkHttpClient();
 
   @Test
-  public void shouldSayHi(int serverPort) throws IOException {
+  public void checaErro(int serverPort) throws IOException {
     Request req = new Request.Builder()
-        .url("http://localhost:" + serverPort)
+        .url("http://localhost:" + serverPort + "/raiz/aa")
         .build();
 
     try (Response rsp = client.newCall(req).execute()) {
-      assertEquals("Chupa Javascript!", rsp.body().string());
-      assertEquals(StatusCode.OK.value(), rsp.code());
+      assertEquals(StatusCode.BAD_REQUEST_CODE, rsp.code());
+    }
+  }
+
+  @Test
+  public void checaSucesso(int serverPort) throws IOException {
+    Request req = new Request.Builder()
+        .url("http://localhost:" + serverPort + "/raiz/25")
+        .build();
+
+    try (Response rsp = client.newCall(req).execute()) {
+      assertEquals(StatusCode.OK_CODE, rsp.code());
+      assertEquals("5.0", rsp.body().string());
     }
   }
 }
