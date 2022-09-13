@@ -1,5 +1,7 @@
 package com.danielfireman.ifal.calcapi;
 
+import java.nio.file.Paths;
+
 import io.jooby.Jooby;
 
 public class App extends Jooby {
@@ -7,6 +9,7 @@ public class App extends Jooby {
   {
     get("/", ctx -> "Chupa Javascript!");
     mvc(new Raiz());
+    assets("/assets/*", Paths.get("assets"));
   }
 
   public static void main(final String[] args) {
