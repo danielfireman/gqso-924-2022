@@ -11,7 +11,7 @@ public class Raiz {
     @GET
     public double calculaRaiz(@PathParam("op") String op) {
         try {
-            return Math.sqrt(Double.parseDouble(op));
+            return Double.parseDouble(op);
         } catch (NumberFormatException nfe) {
             throw new BadRequestException("Parâmetro inválido: " + op);
         }
