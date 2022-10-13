@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: java-app
-          path: '${{ github.workspace }}/api/target/*.jar'
+          path: '${{ github.workspace }}/api/target/api-1.0.0.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +50,4 @@ jobs:
           app-name: 'calcapi-gqso-924'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9BF72C1D873F4E26ADEF7EC4935ACDE2 }}
-          package: '*.jar'
+          package: 'api-1.0.0.jar'
