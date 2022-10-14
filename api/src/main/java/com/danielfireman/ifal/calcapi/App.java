@@ -9,7 +9,7 @@ public class App extends Jooby {
   {
     get("/", ctx -> "Chupa Javascript!");
     mvc(new Raiz());
-    assets("/assets/*", Paths.get("assets"));
+    //assets("/assets/*", Paths.get("assets"));
   }
 
   public static void main(final String[] args) {
