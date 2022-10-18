@@ -7,7 +7,7 @@ import io.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    get("/", ctx -> "Chupa Javascript!");
+    get("/", ctx -> "Java é massa!");
     mvc(new Raiz());
     //assets("/assets/*", Paths.get("assets"));
   }
