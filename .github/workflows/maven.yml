@@ -45,7 +45,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'calcapi-gqso-924'
+          app-name: 'calcapi-gqso'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6AC8E8792AF24B14ABFFA4A317328136 }}
           package: 'api-1.0.0.jar'
