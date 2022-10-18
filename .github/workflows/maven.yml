@@ -22,3 +22,30 @@ jobs:
         cache: maven
     - name: Build and Test with Maven
       run: mvn clean install --file api/pom.xml
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+          name: java-app
+          path: '${{ github.workspace }}/api/target/api-1.0.0.jar'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build_and_test]
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: java-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'calcapi-gqso-924'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6AC8E8792AF24B14ABFFA4A317328136 }}
+          package: 'api-1.0.0.jar'
